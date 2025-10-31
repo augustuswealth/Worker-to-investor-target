@@ -1,0 +1,1929 @@
+/**
+ * ============================================
+ * Augustus Wealth - Worker to Investor Challenge
+ * Responsive Financial Calculator Styles
+ * 
+ * @author Augustus Wealth LLC
+ * @version 1.0.0
+ * 
+ * Table of Contents:
+ * 1. CSS Variables & Custom Properties
+ * 2. Reset & Base Styles
+ * 3. Typography System
+ * 4. Utility Classes
+ * 5. Layout Components
+ * 6. Header & Navigation
+ * 7. Hero Section
+ * 8. Section Structure
+ * 9. Calculator Components
+ * 10. Form Elements
+ * 11. Buttons & Interactive Elements
+ * 12. Result Displays
+ * 13. Charts & Data Visualization
+ * 14. Tables
+ * 15. Special Sections
+ * 16. Animations & Transitions
+ * 17. Responsive Design
+ * 18. Print Styles
+ * ============================================
+ */
+
+/* ============================================
+   1. CSS VARIABLES & CUSTOM PROPERTIES
+   Define global design tokens for consistency
+   ============================================ */
+   :root {
+    /* Brand Colors */
+    --primary: #8cc63f;          /* Augustus Wealth Green */
+    --primary-dark: #6fa02e;     /* Darker variant for hover states */
+    --primary-light: #a4d65f;    /* Lighter variant for accents */
+    --secondary: #ea9d4b;        /* Orange accent color */
+    --secondary-dark: #d18a3f;   /* Darker orange variant */
+    --secondary-light: #f0b06e;  /* Lighter orange variant */
+    
+    /* Neutral Colors */
+    --dark: #1a1a1a;             /* Primary background */
+    --dark-alt: #2d2d2d;         /* Alternative dark background */
+    --gray-900: #333333;         /* Darkest gray */
+    --gray-700: #555555;         /* Dark gray */
+    --gray-500: #8a9ba8;         /* Medium gray */
+    --gray-300: #cccccc;         /* Light gray */
+    --gray-100: #f5f5f5;         /* Lightest gray */
+    --white: #ffffff;            /* Pure white */
+    
+    /* Semantic Colors */
+    --success: var(--primary);   /* Success state color */
+    --warning: var(--secondary); /* Warning state color */
+    --error: #e74c3c;           /* Error/danger state color */
+    
+    /* Spacing Scale (8px base) */
+    --spacing-xs: 0.25rem;   /* 4px */
+    --spacing-sm: 0.5rem;    /* 8px */
+    --spacing-md: 1rem;      /* 16px */
+    --spacing-lg: 1.5rem;    /* 24px */
+    --spacing-xl: 2rem;      /* 32px */
+    --spacing-2xl: 3rem;     /* 48px */
+    --spacing-3xl: 4rem;     /* 64px */
+    
+    /* Typography Scale */
+    --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-size-sm: 0.875rem;    /* 14px */
+    --font-size-base: 1rem;      /* 16px */
+    --font-size-lg: 1.125rem;    /* 18px */
+    --font-size-xl: 1.5rem;      /* 24px */
+    --font-size-2xl: 2rem;       /* 32px */
+    --font-size-3xl: 3rem;       /* 48px */
+    --font-size-4xl: 4rem;       /* 64px */
+}
+
+/* ============================================
+   2. RESET & BASE STYLES
+   Normalize browser defaults
+   ============================================ */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    font-family: var(--font-family);
+    font-size: var(--font-size-base);
+    line-height: 1.6;
+    color: var(--white);
+    background-color: var(--dark);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
+}
+
+/* ============================================
+   3. TYPOGRAPHY SYSTEM
+   Consistent text styling throughout
+   ============================================ */
+h1, h2, h3, h4, h5, h6 {
+    margin-bottom: var(--spacing-md);
+    font-weight: 300;
+    line-height: 1.2;
+}
+
+h1 {
+    font-size: clamp(var(--font-size-2xl), 6vw, var(--font-size-4xl));
+}
+
+h2 {
+    font-size: clamp(var(--font-size-xl), 5vw, var(--font-size-3xl));
+}
+
+h3 {
+    font-size: clamp(var(--font-size-lg), 4vw, var(--font-size-2xl));
+}
+
+p {
+    margin-bottom: var(--spacing-md);
+}
+
+/* Links */
+a {
+    color: var(--primary);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--primary-light);
+}
+
+/* Images */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* ============================================
+   4. UTILITY CLASSES
+   Reusable helper classes
+   ============================================ */
+.hidden {
+    display: none !important;
+}
+
+.required {
+    color: var(--error);
+}
+
+/* Color Utilities */
+.highlight {
+    color: var(--primary);
+}
+
+.highlight-secondary {
+    color: var(--secondary);
+}
+
+.highlight-red {
+    color: var(--error);
+}
+
+.highlight-gray {
+    color: var(--gray-500);
+}
+
+/* ============================================
+   5. LAYOUT COMPONENTS
+   Core layout structures
+   ============================================ */
+.section {
+    padding: var(--spacing-3xl) var(--spacing-xl);
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: var(--spacing-2xl);
+}
+
+.section-number {
+    display: inline-block;
+    font-size: clamp(var(--font-size-lg), 4vw, var(--font-size-2xl));
+    color: var(--primary);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: var(--spacing-sm);
+}
+
+.section-title {
+    margin-bottom: var(--spacing-md);
+}
+
+.section-description {
+    font-size: var(--font-size-lg);
+    opacity: 0.8;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* ============================================
+   6. HEADER & NAVIGATION
+   Site header and main navigation
+   ============================================ */
+.header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 0 var(--spacing-xl);
+    background: transparent;
+}
+
+.logo {
+    height: 50px;
+    width: auto;
+    object-fit: contain;
+}
+
+/* ============================================
+   7. HERO SECTION
+   Landing page hero with animations
+   ============================================ */
+.hero {
+    position: relative;
+    height: 100vh;
+    min-height: 700px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--dark);
+    overflow: hidden;
+}
+
+/* Animated Background Blobs */
+.animated-blobs {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+}
+
+.blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.5;
+    animation: blobMove 25s ease-in-out infinite;
+}
+
+/* Blob Variations */
+.blob-1 {
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
+    top: -200px;
+    left: -200px;
+    animation-duration: 20s;
+}
+
+.blob-2 {
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, var(--secondary) 0%, transparent 70%);
+    bottom: -150px;
+    right: -150px;
+    animation-duration: 25s;
+    animation-delay: -5s;
+}
+
+.blob-3 {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, var(--primary-light) 0%, transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation-duration: 30s;
+    animation-delay: -10s;
+}
+
+.blob-4 {
+    width: 350px;
+    height: 350px;
+    background: radial-gradient(circle, var(--secondary-light) 0%, transparent 70%);
+    bottom: 20%;
+    left: 10%;
+    animation-duration: 22s;
+    animation-delay: -15s;
+}
+
+/* Hero Content Layout */
+.hero-content {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 1400px;
+    padding: 0 var(--spacing-xl);
+    margin-top: 100px;
+}
+
+.hero-split-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 0;
+}
+
+.hero-image-side {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 0;
+}
+
+.hero-main-image {
+    width: 100%;
+    max-width: 700px;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 30px 60px rgba(0,0,0,0.3));
+    animation: fadeInLeft 1s ease-out;
+}
+
+.hero-text-side {
+    padding-left: var(--spacing-2xl);
+}
+
+/* Hero Typography */
+.modern-title {
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 900;
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+    margin: 0;
+    animation: fadeInRight 1s ease-out 0.2s both;
+}
+
+.title-line {
+    display: block;
+    color: var(--white);
+    position: relative;
+    overflow: hidden;
+}
+
+.title-line.accent {
+    color: var(--primary);
+    font-size: 1.1em;
+    margin-top: 0.1em;
+    animation: glowPulse 3s ease-in-out infinite;
+}
+
+.hero-tagline {
+    font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+    font-weight: 300;
+    color: var(--gray-300);
+    margin-top: var(--spacing-lg);
+    animation: fadeInUp 1s ease-out 0.4s both;
+}
+
+/* ============================================
+   8. SECTION STRUCTURE
+   Common section layouts
+   ============================================ */
+.calculator-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-2xl);
+    align-items: start;
+}
+
+.calculator-form-section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+.results-section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xl);
+}
+
+.comparison-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-xl);
+}
+
+
+
+/* ============================================
+   9. CALCULATOR COMPONENTS
+   Financial calculator specific styles
+   ============================================ */
+.chart-below-form {
+    margin-top: var(--spacing-xl);
+}
+
+/* Income Summary Table */
+.income-summary-table {
+    background-color: var(--dark);
+    padding: var(--spacing-lg);
+    border: 2px solid var(--gray-700);
+}
+
+.income-summary-table h3 {
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--spacing-md);
+    color: var(--primary);
+}
+
+.income-summary-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.income-summary-table td {
+    padding: var(--spacing-sm) 0;
+    border-bottom: 1px solid var(--gray-700);
+}
+
+.income-summary-table td:first-child {
+    color: var(--gray-300);
+}
+
+.income-summary-table td:last-child {
+    text-align: right;
+    font-weight: 500;
+}
+
+.income-summary-table .summary-total td {
+    border-bottom: none;
+    border-top: 2px solid var(--primary);
+    padding-top: var(--spacing-md);
+    font-size: var(--font-size-lg);
+}
+
+.income-summary-table .summary-total td:last-child {
+    color: var(--primary);
+}
+
+/* Tax Months Calendar Visualization */
+.months-worked-stat {
+    margin-top: auto;
+}
+
+.calendar-visual {
+    background-color: var(--dark);
+    padding: var(--spacing-xl);
+    border: 2px solid var(--gray-700);
+}
+
+.calendar-header {
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+}
+
+.calendar-header h4 {
+    font-size: var(--font-size-lg);
+    color: var(--primary);
+    margin-bottom: var(--spacing-sm);
+}
+
+.months-label {
+    font-size: var(--font-size-2xl);
+    color: var(--white);
+    font-weight: 300;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-xl);
+}
+
+.calendar-month {
+    position: relative;
+    padding: var(--spacing-lg) var(--spacing-md);
+    border-radius: 8px;
+    text-align: center;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.calendar-month.tax-month {
+    background: linear-gradient(135deg, var(--error) 0%, var(--secondary) 100%);
+    color: var(--white);
+    animation: monthPulse 2s ease-in-out infinite;
+}
+
+.calendar-month.tax-month:nth-child(even) {
+    animation-delay: 0.5s;
+}
+
+.calendar-month.keep-month {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    color: var(--white);
+}
+
+.calendar-legend {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-xl);
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    font-size: var(--font-size-sm);
+    color: var(--gray-300);
+}
+
+.legend-box {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+}
+
+.legend-box.tax-months {
+    background: linear-gradient(135deg, var(--error) 0%, var(--secondary) 100%);
+}
+
+.legend-box.keep-months {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+}
+
+/* ============================================
+   10. FORM ELEMENTS
+   Input fields, selects, and form controls
+   ============================================ */
+.form-group {
+    margin-bottom: var(--spacing-lg);
+}
+
+.form-label {
+    display: block;
+    margin-bottom: var(--spacing-sm);
+    font-weight: 500;
+    color: var(--white);
+}
+
+.form-helper {
+    display: block;
+    font-size: var(--font-size-sm);
+    color: var(--gray-500);
+    font-weight: 300;
+    margin-top: var(--spacing-xs);
+}
+
+.form-input,
+.form-select {
+    width: 100%;
+    padding: 0.75rem var(--spacing-md);
+    font-size: var(--font-size-base);
+    font-family: inherit;
+    border: 2px solid transparent;
+    background-color: var(--white);
+    color: var(--gray-900);
+    transition: all 0.3s ease;
+}
+
+.form-input:focus,
+.form-select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(140, 198, 63, 0.2);
+}
+
+.form-input.error,
+.form-select.error {
+    border-color: var(--error);
+}
+
+.form-error {
+    display: block;
+    margin-top: var(--spacing-xs);
+    font-size: var(--font-size-sm);
+    color: var(--error);
+    min-height: 1.2em;
+}
+
+.form-textarea {
+    width: 100%;
+    padding: 0.75rem var(--spacing-md);
+    font-size: var(--font-size-base);
+    font-family: inherit;
+    border: 2px solid transparent;
+    background-color: var(--white);
+    color: var(--gray-900);
+    resize: vertical;
+    min-height: 120px;
+    transition: all 0.3s ease;
+}
+
+.form-textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(140, 198, 63, 0.2);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-md);
+}
+
+/* ============================================
+   11. BUTTONS & INTERACTIVE ELEMENTS
+   Clickable elements and CTAs
+   ============================================ */
+.btn {
+    display: inline-block;
+    padding: 0.75rem var(--spacing-xl);
+    font-size: var(--font-size-base);
+    font-weight: 500;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    color: var(--white);
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+.btn-calculate,
+.btn-submit {
+    width: 100%;
+    font-size: var(--font-size-lg);
+    padding: var(--spacing-md) var(--spacing-xl);
+}
+
+/* ============================================
+   12. RESULT DISPLAYS
+   Components for showing calculation results
+   ============================================ */
+.result-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-md);
+}
+
+.result-card {
+    background-color: var(--dark);
+    padding: var(--spacing-lg);
+    text-align: center;
+    border: 2px solid var(--gray-700);
+    transition: all 0.3s ease;
+}
+
+.result-card:hover {
+    border-color: var(--primary);
+    transform: translateY(-2px);
+}
+
+.result-label {
+    font-size: var(--font-size-base);
+    color: var(--gray-500);
+    margin-bottom: var(--spacing-sm);
+}
+
+.result-value {
+    font-size: var(--font-size-2xl);
+    font-weight: 300;
+    color: var(--primary);
+}
+
+/* Congratulations Banner */
+.congratulations-banner {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    color: var(--white);
+    padding: var(--spacing-xl);
+    margin: var(--spacing-xl) 0;
+    border-radius: 8px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.congratulations-banner::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    animation: shimmer 3s ease-in-out infinite;
+}
+
+.congratulations-banner h3 {
+    font-size: var(--font-size-2xl);
+    margin-bottom: var(--spacing-md);
+    position: relative;
+    z-index: 1;
+}
+
+.congratulations-banner p {
+    font-size: var(--font-size-lg);
+    margin-bottom: 0;
+    position: relative;
+    z-index: 1;
+}
+
+.congratulations-icon {
+    font-size: 3rem;
+    margin-bottom: var(--spacing-md);
+    animation: bounce 2s ease-in-out infinite;
+}
+
+/* ============================================
+   13. CHARTS & DATA VISUALIZATION
+   Chart container styles
+   ============================================ */
+.chart-wrapper {
+    background-color: var(--dark);
+    padding: var(--spacing-lg);
+    position: relative;
+    height: 400px;
+}
+
+.chart-wrapper-large {
+    height: 500px;
+}
+
+/* ============================================
+   14. TABLES
+   Data table styles
+   ============================================ */
+/* Asset Endurance Table */
+.endurance-table-wrapper {
+    background-color: var(--dark-alt);
+    padding: var(--spacing-xl);
+    border-radius: 8px;
+}
+
+.endurance-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-bottom: var(--spacing-xl);
+}
+
+.endurance-table th,
+.endurance-table td {
+    padding: var(--spacing-md);
+    text-align: left;
+    border-bottom: 1px solid var(--gray-700);
+}
+
+.endurance-table th {
+    background-color: var(--dark);
+    font-weight: 600;
+    color: var(--primary);
+    text-transform: uppercase;
+    font-size: var(--font-size-sm);
+    letter-spacing: 1px;
+}
+
+.endurance-table td {
+    font-size: var(--font-size-base);
+}
+
+.endurance-table tr:last-child td {
+    border-bottom: none;
+}
+
+.endurance-table .crossover-row {
+    background-color: rgba(140, 198, 63, 0.05);
+}
+
+.endurance-table .crossover-row td {
+    border-bottom: 2px solid var(--primary);
+    border-top: 2px solid var(--primary);
+    padding-top: calc(var(--spacing-md) + 1px);
+    padding-bottom: calc(var(--spacing-md) + 1px);
+}
+
+.scenario-label {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+}
+
+.scenario-label strong {
+    color: var(--white);
+    font-weight: 500;
+}
+
+.scenario-amount {
+    font-size: var(--font-size-sm);
+    color: var(--gray-500);
+}
+
+.endurance-value {
+    font-size: var(--font-size-lg);
+    font-weight: 500;
+    color: var(--white);
+}
+
+.endurance-value.highlight {
+    color: var(--primary);
+}
+
+.endurance-diff {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+}
+
+.endurance-diff.positive {
+    color: var(--primary);
+}
+
+.endurance-diff.negative {
+    color: var(--error);
+}
+
+/* Insights Section */
+.endurance-insights {
+    background-color: var(--dark);
+    padding: var(--spacing-lg);
+}
+
+.endurance-insights h3 {
+    color: var(--primary);
+    margin-bottom: var(--spacing-md);
+    font-size: var(--font-size-lg);
+}
+
+.endurance-insights ul {
+    list-style: none;
+    padding: 0;
+}
+
+.endurance-insights li {
+    padding: var(--spacing-sm) 0;
+    padding-left: var(--spacing-xl);
+    position: relative;
+    color: var(--gray-300);
+    line-height: 1.8;
+}
+
+.endurance-insights li:before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--primary);
+    font-weight: bold;
+}
+
+/* Tax Analysis Table */
+.tax-analysis-section {
+    margin-top: var(--spacing-2xl);
+    background: transparent;
+    padding: 0;
+}
+
+.tax-analysis-section h3 {
+    color: var(--primary);
+    margin-bottom: var(--spacing-lg);
+    font-size: var(--font-size-lg);
+    font-weight: 500;
+}
+
+.tax-analysis-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: var(--dark);
+}
+
+.tax-analysis-table th,
+.tax-analysis-table td {
+    padding: var(--spacing-md);
+    text-align: left;
+    border-bottom: 1px solid var(--gray-700);
+}
+
+.tax-analysis-table th {
+    background-color: var(--dark);
+    font-weight: 600;
+    color: var(--primary);
+    text-transform: uppercase;
+    font-size: var(--font-size-sm);
+    letter-spacing: 1px;
+}
+
+.tax-analysis-table th:first-child {
+    text-align: left;
+}
+
+.tax-analysis-table td {
+    font-size: var(--font-size-base);
+}
+
+.tax-analysis-table tr:last-child td {
+    border-bottom: none;
+}
+
+.tax-analysis-table .row-label {
+    color: var(--gray-300);
+    font-size: var(--font-size-sm);
+}
+
+.tax-analysis-table .worker-column {
+    text-align: center;
+    color: var(--secondary);
+    font-weight: 500;
+    font-size: var(--font-size-lg);
+}
+
+.tax-analysis-table .investor-column {
+    text-align: center;
+    color: var(--primary);
+    font-weight: 500;
+    font-size: var(--font-size-lg);
+}
+
+.tax-analysis-table .difference-column {
+    text-align: center;
+    color: var(--gray-500);
+    font-weight: 500;
+    font-size: var(--font-size-lg);
+}
+
+.tax-analysis-table .caption {
+    font-size: 0.75rem;
+    font-style: italic;
+    color: var(--gray-500);
+    font-weight: 300;
+    margin-top: var(--spacing-xs);
+    text-transform: none;
+    letter-spacing: 0;
+}
+
+/* ============================================
+   15. SPECIAL SECTIONS
+   Unique component styles
+   ============================================ */
+
+/* Projection Section */
+.projection-wrapper {
+    background-color: var(--dark-alt);
+    padding: var(--spacing-xl);
+}
+
+.slider-controls {
+    margin-bottom: var(--spacing-xl);
+}
+
+.slider-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-md);
+}
+
+.slider-label {
+    font-weight: 500;
+}
+
+.slider-value {
+    font-size: var(--font-size-xl);
+    color: var(--gray-500);
+}
+
+/* Custom Range Slider */
+.slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 8px;
+    background: var(--gray-700);
+    outline: none;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 24px;
+    height: 24px;
+    background: var(--gray-500);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.slider::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+    box-shadow: 0 0 10px rgba(138, 155, 168, 0.5);
+}
+
+.slider::-moz-range-thumb {
+    width: 24px;
+    height: 24px;
+    background: var(--primary);
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+/* Projection Statistics Grid */
+.projection-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-xl);
+}
+
+.stat-card {
+    background-color: var(--dark);
+    padding: var(--spacing-lg);
+    text-align: center;
+}
+
+.stat-card .stat-label {
+    font-size: var(--font-size-sm);
+    color: var(--gray-500);
+    margin-bottom: var(--spacing-sm);
+}
+
+.stat-card .stat-value {
+    font-size: var(--font-size-xl);
+    font-weight: 500;
+    color: var(--white);
+}
+
+.stat-card .stat-value.highlight {
+    color: var(--primary);
+}
+
+.stat-card .stat-value.highlight-gray {
+    color: var(--gray-500);
+}
+
+.stat-card .stat-value.highlight-red {
+    color: var(--error);
+}
+
+.stat-card .stat-value.highlight-secondary {
+    color: var(--secondary);
+}
+
+/* Crossover Analysis Section */
+.crossover-wrapper {
+    background-color: var(--dark-alt);
+    padding: var(--spacing-xl);
+}
+
+.crossover-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-xl);
+    margin-bottom: var(--spacing-2xl);
+}
+
+.crossover-card {
+    background-color: var(--dark);
+    padding: var(--spacing-xl);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.crossover-card.worker-path {
+    border-top: 4px solid var(--secondary);
+}
+
+.crossover-card.investor-path {
+    border-top: 4px solid var(--primary);
+}
+
+.crossover-card.difference-path {
+    border-top: 4px solid var(--gray-500);
+}
+
+.crossover-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.crossover-icon {
+    font-size: 3rem;
+    margin-bottom: var(--spacing-md);
+    animation: iconFloat 3s ease-in-out infinite;
+}
+
+.crossover-card h3 {
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--spacing-md);
+    color: var(--white);
+}
+
+.crossover-years {
+    font-size: var(--font-size-3xl);
+    font-weight: 700;
+    margin-bottom: var(--spacing-md);
+    line-height: 1;
+}
+
+.worker-path .crossover-years {
+    color: var(--secondary);
+}
+
+.investor-path .crossover-years {
+    color: var(--primary);
+}
+
+.difference-path .crossover-years {
+    color: var(--gray-500);
+}
+
+.crossover-details {
+    font-size: var(--font-size-sm);
+    color: var(--gray-300);
+}
+
+.crossover-details p {
+    margin-bottom: var(--spacing-xs);
+}
+
+.crossover-details span {
+    color: var(--white);
+    font-weight: 500;
+}
+
+/* Challenge Section */
+.challenge-section {
+    background-color: var(--primary);
+    color: var(--dark);
+    margin: var(--spacing-xl) auto;
+    position: relative;
+    overflow: visible;
+}
+
+.challenge-section .section-number {
+    color: var(--dark);
+}
+
+.challenge-section .section-title {
+    color: var(--dark);
+}
+
+.challenge-description {
+    font-size: 1.25rem;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto var(--spacing-xl);
+    position: relative;
+    z-index: 2;
+}
+
+.challenge-targets {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-xl);
+    max-width: 600px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+.challenge-card {
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: var(--spacing-xl);
+    text-align: center;
+    backdrop-filter: blur(10px);
+}
+
+.challenge-card h3 {
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--spacing-md);
+    color: var(--dark);
+}
+
+.challenge-value {
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: var(--dark);
+}
+
+.challenge-section .section-header {
+    position: relative;
+    z-index: 2;
+}
+
+/* Challenge Image Container */
+.challenge-image-container {
+    position: absolute;
+    right: -120px;
+    top: 50%;
+    transform: translateY(-30%);
+    z-index: 1;
+}
+
+.challenge-image {
+    width: 300px;
+    height: auto;
+}
+
+.challenge-name-tag {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(255, 255, 255, 0.95);
+    color: var(--dark);
+    padding: 8px 20px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    white-space: nowrap;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Contact Section */
+.contact-section {
+    background-color: var(--dark-alt);
+}
+
+.contact-intro {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto var(--spacing-xl);
+}
+
+.contact-form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Footer */
+.footer {
+    padding: var(--spacing-2xl) var(--spacing-xl);
+    background-color: var(--dark-alt);
+    margin-top: var(--spacing-3xl);
+}
+
+.disclaimer {
+    font-size: var(--font-size-sm);
+    color: var(--gray-500);
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Success Message Notification */
+.success-message {
+    position: fixed;
+    top: var(--spacing-xl);
+    right: var(--spacing-xl);
+    background-color: var(--success);
+    color: var(--white);
+    padding: var(--spacing-md) var(--spacing-xl);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    transform: translateX(400px);
+    transition: transform 0.3s ease;
+    z-index: 1000;
+}
+
+.success-message.show {
+    transform: translateX(0);
+}
+
+/* Share Notification */
+.share-notification {
+    position: fixed;
+    bottom: var(--spacing-xl);
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background-color: var(--dark-alt);
+    color: var(--white);
+    padding: var(--spacing-md) var(--spacing-xl);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--primary);
+    transition: transform 0.3s ease;
+    z-index: 1000;
+}
+
+.share-notification.show {
+    transform: translateX(-50%) translateY(0);
+}
+
+/* ============================================
+   16. ANIMATIONS & TRANSITIONS
+   Keyframe animations and transitions
+   ============================================ */
+
+/* Blob Animation */
+@keyframes blobMove {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+    }
+    25% {
+        transform: translate(100px, -50px) scale(1.1);
+    }
+    50% {
+        transform: translate(-50px, 100px) scale(0.9);
+    }
+    75% {
+        transform: translate(-100px, -30px) scale(1.05);
+    }
+}
+
+/* Fade Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Glow Animation */
+@keyframes glowPulse {
+    0%, 100% {
+        text-shadow: 0 0 20px rgba(140, 198, 63, 0.5);
+    }
+    50% {
+        text-shadow: 0 0 40px rgba(140, 198, 63, 0.8);
+    }
+}
+
+/* Shimmer Animation */
+@keyframes shimmer {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(180deg); }
+}
+
+/* Icon Float Animation */
+@keyframes iconFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* Bounce Animation */
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* Month Pulse Animation */
+@keyframes monthPulse {
+    0%, 100% { transform: scale(1); opacity: 0.9; }
+    50% { transform: scale(1.05); opacity: 1; }
+}
+
+/* ============================================
+   MAILCHIMP FORM OVERRIDES
+   Custom styling for embedded Mailchimp forms
+   ============================================ */
+
+/* Button Styling */
+#mc_embed_signup .button {
+    display: inline-block !important;
+    padding: 0.75rem var(--spacing-xl) !important;
+    font-size: var(--font-size-base) !important;
+    font-weight: 500 !important;
+    text-align: center !important;
+    text-decoration: none !important;
+    border: none !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    background-color: var(--primary) !important;
+    color: var(--white) !important;
+    border-radius: 0 !important;
+    height: fit-content !important;
+}
+
+#mc_embed_signup .button:hover {
+    background-color: var(--primary-dark) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2) !important;
+}
+
+#mc_embed_signup .button:active {
+    transform: translateY(0) !important;
+}
+
+/* Form Input Fields */
+#mc_embed_signup input[type="email"],
+#mc_embed_signup input[type="text"],
+#mc_embed_signup textarea,
+#mc_embed_signup select {
+    border-radius: 0 !important;
+    border: 2px solid var(--gray-700) !important;
+    background-color: var(--white) !important;
+    padding: 0.75rem 1rem !important;
+    font-family: var(--font-family) !important;
+    font-size: 1rem !important;
+    transition: all 0.3s ease !important;
+    color: #000000 !important;
+    -webkit-text-fill-color: #333333 !important;
+}
+
+#mc_embed_signup input::placeholder,
+#mc_embed_signup textarea::placeholder {
+    color: var(--gray-500) !important;
+}
+
+#mc_embed_signup input[type="email"]:focus,
+#mc_embed_signup input[type="text"]:focus,
+#mc_embed_signup textarea:focus,
+#mc_embed_signup select:focus {
+    border-color: var(--primary) !important;
+    outline: none !important;
+    box-shadow: 0 0 0 3px rgba(140, 198, 63, 0.2) !important;
+}
+
+#mc_embed_signup form {
+    padding: 0 !important;
+}
+
+/* Labels */
+#mc_embed_signup label {
+    color: var(--white) !important;
+    font-weight: 500 !important;
+    font-size: 1rem !important;
+    margin-bottom: 0.5rem !important;
+    display: block !important;
+}
+
+#mc_embed_signup .asterisk {
+    color: var(--error) !important;
+}
+
+#mc_embed_signup .indicates-required {
+    color: var(--gray-500) !important;
+    font-size: 0.875rem !important;
+    margin-bottom: 1.5rem !important;
+}
+
+/* Field Groups */
+#mc_embed_signup .mc-field-group {
+    margin-bottom: 1.5rem !important;
+}
+
+#mc_embed_signup textarea {
+    min-height: 120px !important;
+    resize: vertical !important;
+}
+
+/* Submit Button Container */
+#mc_embed_signup .optionalParent {
+    text-align: center !important;
+}
+
+/* Mailchimp Badge */
+#mc_embed_signup .refferal_badge {
+    margin-top: 1rem !important;
+    opacity: 0.5 !important;
+}
+
+/* Error Messages */
+#mc_embed_signup .mce_inline_error {
+    background-color: transparent !important;
+    color: var(--error) !important;
+    font-size: 0.875rem !important;
+    font-weight: 400 !important;
+    padding: 0 !important;
+    margin-top: 0.25rem !important;
+}
+
+/* Success Messages */
+#mce-success-response {
+    color: var(--primary) !important;
+    font-weight: 500 !important;
+}
+
+/* ============================================
+   EXPANDABLE SECTIONS
+   Collapsible content sections
+   ============================================ */
+   .expandable-container {
+    max-width: 100%;
+    margin: var(--spacing-xl) 0;
+    background-color: var(--gray-900);
+    border: 2px solid var(--gray-700);
+    overflow: hidden;
+}
+
+.expandable-section {
+    border-bottom: 1px solid var(--gray-700);
+}
+
+.expandable-section:last-child {
+    border-bottom: none;
+}
+
+.expandable-header {
+    background-color: var(--dark);
+    padding: var(--spacing-md) var(--spacing-lg);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.3s ease;
+    user-select: none;
+}
+
+.expandable-header:hover {
+    background-color: var(--gray-900);
+}
+
+.expandable-title {
+    font-size: var(--font-size-lg);
+    font-weight: 500;
+    color: var(--white);
+}
+
+.expandable-chevron {
+    width: 24px;
+    height: 24px;
+    transition: transform 0.3s ease;
+}
+
+.expandable-chevron svg {
+    width: 100%;
+    height: 100%;
+    fill: var(--primary);
+}
+
+.expandable-section.expanded .expandable-chevron {
+    transform: rotate(180deg);
+}
+
+.expandable-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    background-color: var(--dark-alt);
+}
+
+.expandable-section.expanded .expandable-content {
+    max-height: 1000px;
+}
+
+.expandable-inner {
+    padding: var(--spacing-lg);
+}
+
+.expandable-item {
+    margin-bottom: var(--spacing-lg);
+}
+
+.expandable-item:last-child {
+    margin-bottom: 0;
+}
+
+.expandable-item strong {
+    font-weight: 600;
+    color: var(--primary);
+    display: block;
+    margin-bottom: var(--spacing-xs);
+}
+
+.expandable-item p {
+    color: var(--gray-300);
+    margin: 0;
+}
+
+
+
+
+/* ============================================
+   17. RESPONSIVE DESIGN
+   Media queries for different screen sizes
+   ============================================ */
+
+/* Tablet Landscape and Below */
+@media (max-width: 1200px) {
+    .challenge-image-container {
+        right: -50px;
+    }
+    
+    .crossover-stats {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
+    }
+}
+
+
+/* Tablet Portrait and Below */
+@media (max-width: 1024px) {
+    .calculator-container,
+    .comparison-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .section {
+        padding: var(--spacing-2xl) var(--spacing-lg);
+    }
+    
+    /* Hero Responsive */
+    .hero-split-layout {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    
+    .hero-image-side {
+        order: 2;
+        justify-content: center;
+        margin-top: var(--spacing-xl);
+    }
+    
+    .hero-text-side {
+        order: 1;
+        padding-left: 0;
+    }
+    
+    .hero-main-image {
+        max-width: 500px;
+    }
+    
+    .challenge-image-container {
+        position: relative;
+        right: auto;
+        top: auto;
+        transform: none;
+        margin: var(--spacing-xl) auto 0;
+        display: block;
+        text-align: center;
+    }
+
+    .challenge-image {
+        width: 300px;
+        margin: 0 auto;
+        display: block;
+    }
+}
+
+/* Mobile Landscape and Below */
+@media (max-width: 768px) {
+
+    .expandable-header {
+        padding: var(--spacing-sm) var(--spacing-md);
+    }
+    
+    .expandable-title {
+        font-size: var(--font-size-base);
+    }
+    
+    .expandable-inner {
+        padding: var(--spacing-md);
+    }
+    /* Mailchimp Form Mobile */
+    #mc_embed_signup input[type="email"],
+    #mc_embed_signup input[type="text"],
+    #mc_embed_signup textarea {
+        width: 100% !important;
+    }
+    
+    .header {
+        padding: var(--spacing-md) var(--spacing-lg);
+    }
+    
+    .logo {
+        height: 40px;
+    }
+    
+    /* Typography Adjustments */
+    .years-worked-number {
+        font-size: var(--font-size-2xl);
+    }
+    
+    .tax-analysis-table {
+        font-size: var(--font-size-sm);
+    }
+    
+    .tax-analysis-table th,
+    .tax-analysis-table td {
+        padding: var(--spacing-sm);
+    }
+    
+    .tax-analysis-table .worker-column,
+    .tax-analysis-table .investor-column {
+        font-size: var(--font-size-lg);
+    }
+    
+    /* Grid Adjustments */
+    .form-row,
+    .result-cards,
+    .challenge-targets,
+    .projection-stats {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Chart Sizing */
+    .chart-wrapper {
+        height: 300px;
+    }
+    
+    .chart-wrapper-large {
+        height: 400px;
+    }
+    
+    /* Hero Title */
+    .modern-title {
+        font-size: clamp(2.5rem, 10vw, 4rem);
+    }
+    
+    /* Calendar Grid */
+    .calendar-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--spacing-sm);
+    }
+    
+    .calendar-month {
+        padding: var(--spacing-md) var(--spacing-xs);
+        font-size: var(--font-size-sm);
+    }
+    
+    /* Challenge Image */
+    .challenge-image {
+        width: 250px;
+    }
+    
+    .challenge-name-tag {
+        font-size: 0.75rem;
+        padding: 6px 16px;
+    }
+    
+    /* Table Responsive */
+    .endurance-table {
+        font-size: var(--font-size-sm);
+    }
+    
+    .endurance-table th,
+    .endurance-table td {
+        padding: var(--spacing-sm);
+    }
+    
+    .endurance-value,
+    .endurance-diff {
+        font-size: var(--font-size-base);
+    }
+    
+    .scenario-amount {
+        font-size: 0.75rem;
+    }
+    
+    /* Crossover Cards */
+    .crossover-icon {
+        font-size: 2rem;
+    }
+    
+    .crossover-years {
+        font-size: var(--font-size-2xl);
+    }
+}
+
+/* Mobile Portrait */
+@media (max-width: 480px) {
+    .section {
+        padding: var(--spacing-xl) var(--spacing-md);
+    }
+    
+    .hero {
+        min-height: 700px;
+    }
+    
+    .hero-content {
+        margin-top: 3rem;
+    }
+    
+    .hero-main-image {
+        max-width: 350px;
+    }
+    
+    .modern-title {
+        font-size: 2.5rem;
+    }
+    
+    .header {
+        padding: var(--spacing-md);
+    }
+    
+    .logo {
+        height: 40px;
+    }
+    
+    .calendar-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .calendar-legend {
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+    
+    /* Mobile Table Scroll */
+    .endurance-table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+    
+    .scenario-amount {
+        display: none;
+    }
+    
+    /* Tax Analysis Mobile */
+    .tax-analysis-table .caption {
+        display: none;
+    }
+    
+    .tax-analysis-table .worker-column,
+    .tax-analysis-table .investor-column {
+        font-size: var(--font-size-base);
+    }
+}
+
+/* ============================================
+   18. PRINT STYLES
+   Optimized styles for printing
+   ============================================ */
+@media print {
+    body {
+        background-color: white;
+        color: black;
+    }
+    
+    /* Hide Interactive Elements */
+    .header,
+    .btn,
+    .contact-section,
+    .slider-controls,
+    .animated-blobs {
+        display: none !important;
+    }
+    
+    /* Page Breaking */
+    .section {
+        page-break-inside: avoid;
+        background-color: white !important;
+        color: black !important;
+    }
+    
+    /* Chart Sizing */
+    .chart-wrapper {
+        height: auto !important;
+        min-height: 300px;
+    }
+    
+    /* Color Adjustments */
+    .results-display,
+    .projection-wrapper,
+    .challenge-section,
+    .endurance-table-wrapper,
+    .crossover-wrapper {
+        background-color: #f5f5f5 !important;
+        color: black !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+    
+    /* Preserve Important Colors */
+    .section-number,
+    .result-value,
+    .stat-value.highlight,
+    .endurance-value.highlight,
+    .crossover-years {
+        color: var(--primary) !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+}

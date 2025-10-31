@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- ========================================
+         METADATA & SEO
+         ======================================== -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Augustus Wealth Worker to Investor Challenge - Calculate your path to financial freedom">
+    <meta name="author" content="Augustus Wealth LLC">
+    <meta name="keywords" content="financial freedom, investing, wealth building, Augustus Wealth">
+    
+    <title>Worker to Investor Challenge | Augustus Wealth</title>
+    
+    <!-- ========================================
+         FAVICON
+         ======================================== -->
+    <link rel="icon" type="image/png" href="media/logo symbol green.png">
+    
+    <!-- ========================================
+         EXTERNAL FONTS
+         ======================================== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+    
+    <!-- ========================================
+         STYLESHEETS
+         ======================================== -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- ========================================
+         EXTERNAL LIBRARIES
+         ======================================== -->
+    <!-- Chart.js for data visualization -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+</head>
+<body>
+    <!-- ========================================
+         HERO SECTION
+         Landing area with main branding and tagline
+         ======================================== -->
+    <section class="hero">
+        <!-- Navigation Header -->
+        <header class="header" id="header-main">
+            <a href="https://augustuswealth.com/" aria-label="Augustus Wealth Homepage">
+                <img src="media/logo green.png" alt="Augustus Wealth" class="logo">
+            </a>
+        </header>
+        
+        <!-- Animated Background Elements -->
+        <div class="animated-blobs" aria-hidden="true">
+            <div class="blob blob-1"></div>
+            <div class="blob blob-2"></div>
+            <div class="blob blob-3"></div>
+            <div class="blob blob-4"></div>
+        </div>
+        
+        <!-- Hero Content Container -->
+        <div class="hero-content">
+            <div class="hero-split-layout">
+                <!-- Visual Element -->
+                <div class="hero-image-side">
+                    <img src="media/workerToInvestor.png" 
+                         alt="Worker to Investor Journey" 
+                         class="hero-main-image">
+                </div>
+                
+                <!-- Text Content -->
+                <div class="hero-text-side">
+                    <h1 class="modern-title">
+                        <span class="title-line">WORKER</span>
+                        <span class="title-line">TO</span>
+                        <span class="title-line accent">INVESTOR</span>
+                        <span class="title-line">CHALLENGE</span>
+                    </h1>
+                    <p class="hero-tagline">Level up to financial freedom</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================
+         CALCULATOR SECTION
+         Main interactive calculator for financial planning
+         ======================================== -->
+    <section class="section" id="calculator">
+        <div class="section-header">
+            <div class="section-number">Worker - Level 1</div>
+            <h2 class="section-title">Break Free of the Worker</h2>
+            <p class="section-description">
+                Get personalized spending and savings targets that will 
+                build your asset base and level you up to financial freedom.
+            </p>
+        </div>
+        
+        <div class="calculator-container">
+            <!-- Input Form Section -->
+            <div class="calculator-form-section">
+                <form id="calculatorForm" novalidate>
+                    <!-- Gross Income Input -->
+                    <div class="form-group">
+                        <label for="preTaxIncome" class="form-label">
+                            Gross Annual Earned Income <span class="required">*</span>
+                            <span class="form-helper">Your total income before taxes</span>
+                        </label>
+                        <input type="text" 
+                               id="preTaxIncome" 
+                               name="preTaxIncome" 
+                               class="form-input currency-input" 
+                               placeholder="$0" 
+                               required 
+                               autocomplete="off"
+                               inputmode="numeric"
+                               aria-describedby="preTaxIncome-error">
+                        <span class="form-error" id="preTaxIncome-error" role="alert"></span>
+                    </div>
+                    
+                    <!-- Current Assets Input -->
+                    <div class="form-group">
+                        <label for="wealthAccount" class="form-label">
+                            Current Asset Base <span class="required">*</span>
+                            <span class="form-helper">Total liquid investments excluding retirement accounts (401K & IRA) and primary residence</span>
+                        </label>
+                        <input type="text" 
+                               id="wealthAccount" 
+                               name="wealthAccount" 
+                               class="form-input currency-input" 
+                               placeholder="$0" 
+                               required 
+                               autocomplete="off"
+                               inputmode="numeric"
+                               aria-describedby="wealthAccount-error">
+                        <span class="form-error" id="wealthAccount-error" role="alert"></span>
+                    </div>
+                    
+                    <!-- State Tax Input -->
+                    <div class="form-group">
+                        <label for="stateIncomeTax" class="form-label">
+                            State Income Tax
+                            <span class="form-helper">Annual state tax amount (optional)</span>
+                        </label>
+                        <input type="text" 
+                               id="stateIncomeTax" 
+                               name="stateIncomeTax" 
+                               class="form-input currency-input" 
+                               placeholder="$0" 
+                               autocomplete="off"
+                               inputmode="numeric"
+                               aria-describedby="stateIncomeTax-error">
+                        <span class="form-error" id="stateIncomeTax-error" role="alert"></span>
+                    </div>
+                    
+                    <!-- Filing Status Selection -->
+                    <div class="form-group">
+                        <label for="filingStatus" class="form-label">
+                            Tax Filing Status <span class="required">*</span>
+                        </label>
+                        <select id="filingStatus" 
+                                name="filingStatus" 
+                                class="form-select" 
+                                required
+                                aria-describedby="filingStatus-error">
+                            <option value="">Select filing status</option>
+                            <option value="single">Single</option>
+                            <option value="marriedJointly">Married Filing Jointly</option>
+                            <option value="marriedSeparately">Married Filing Separately</option>
+                            <option value="headOfHousehold">Head of Household</option>
+                        </select>
+                        <span class="form-error" id="filingStatus-error" role="alert"></span>
+                    </div>
+                    
+                    <!-- Submit Button -->
+                    <button type="submit" class="btn btn-primary btn-calculate">
+                        Calculate My Targets
+                    </button>
+                    <span class="form-helper">* Find formulas and assumptions at the bottom of the page. </span>
+
+                </form>
+                
+                <!-- Income Breakdown Chart (Initially Hidden) -->
+                <div class="chart-wrapper chart-below-form hidden" id="incomeChartWrapper">
+                    <canvas id="incomeChart" aria-label="Income breakdown chart"></canvas>
+                </div>
+            </div>
+            
+            <!-- Results Display Section -->
+            <div id="results" class="results-section">
+                <!-- Key Metrics Cards -->
+                <div class="result-cards">
+                    <div class="result-card">
+                        <div class="result-label">Target Spending</div>
+                        <div class="result-value" id="targetSpending">—</div>
+                    </div>
+                    <div class="result-card">
+                        <div class="result-label">Target Saving</div>
+                        <div class="result-value" id="targetSaving">—</div>
+                    </div>
+                </div>
+                
+                <!-- Congratulations Message (Conditional) -->
+                <div class="congratulations-banner hidden" id="congratulationsBanner">
+                    <div class="congratulations-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <line x1="12" y1="2" x2="12" y2="22"></line>
+                            <polyline points="17 5 12 10 7 5"></polyline>
+                            <polyline points="17 14 12 19 7 14"></polyline>
+                        </svg>
+                    </div>
+                    <h2>Congratulations! You're an Investor!</h2>
+                    <p>Keep up the excellent work!</p>
+                </div>
+                
+                <!-- Income Summary Table -->
+                <div class="income-summary-table hidden" id="incomeSummaryTable">
+                    <h3>Income Summary</h3>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>Gross Annual Earned Income</td>
+                                <td id="summaryPreTax">—</td>
+                            </tr>
+                            <tr>
+                                <td>Current Asset Base</td>
+                                <td id="summaryWealth">—</td>
+                            </tr>
+                            <tr>
+                                <td>Effective Federal Tax</td>
+                                <td id="summaryFedTax">—</td>
+                            </tr>
+                            <tr>
+                                <td>Effective State Tax</td>
+                                <td id="summaryStateTax">—</td>
+                            </tr>
+                            <tr>
+                                <td>Total Income Tax</td>
+                                <td id="summaryTotalTax">—</td>
+                            </tr>
+                            <tr class="summary-total">
+                                <td>After-tax Income</td>
+                                <td id="summaryPostTax">—</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- Tax Burden Visualization -->
+                <div class="months-worked-stat hidden" id="monthsWorkedStat">
+                    <div class="calendar-visual">
+                        <div class="calendar-header">
+                            <h4>Annual Tax Burden</h4>
+                            <div class="months-label" id="monthsWorkedNumber">—</div>
+                        </div>
+                        <div class="calendar-grid" id="calendarGrid">
+                            <!-- Calendar months populated dynamically -->
+                        </div>
+                        <div class="calendar-legend">
+                            <div class="legend-item">
+                                <span class="legend-box tax-months"></span>
+                                <span>Working for taxes</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-box keep-months"></span>
+                                <span>Working for yourself</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================
+         COMPARISON SECTION
+         Visual comparison of worker vs investor targets
+         ======================================== -->
+    <section class="section hidden" id="comparison">
+        <div class="section-header">
+            <div class="section-number">Investor - Level 2</div>
+            <h2 class="section-title">Design Systems and Deploy Capital</h2>
+            <p class="section-description">
+                See how your current spending and savings compare to Worker targets and the Investor Level Up targets
+            </p>
+        </div>
+        
+        <div class="comparison-grid">
+            <div class="chart-wrapper">
+                <canvas id="spendingChart" aria-label="Spending comparison chart"></canvas>
+            </div>
+            <div class="chart-wrapper">
+                <canvas id="savingsChart" aria-label="Savings comparison chart"></canvas>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================
+         PROJECTION SECTION
+         Interactive wealth projection calculator
+         ======================================== -->
+    <section class="section hidden" id="projection">
+        <div class="section-header">
+            <h2 class="section-title">Project Your Future</h2>
+            <p class="section-description">
+                Explore how your wealth can grow over 15 years with different savings rates. 
+                Small changes today compound into massive differences tomorrow.
+            </p>
+        </div>
+        
+        <div class="projection-wrapper">
+            <!-- Interactive Savings Slider -->
+            <div class="slider-controls">
+                <div class="slider-header">
+                    <label class="slider-label" for="savingsSlider">Your Annual Savings</label>
+                    <div class="slider-value" id="sliderValueDisplay">$0</div>
+                </div>
+                <input type="range" 
+                       id="savingsSlider" 
+                       class="slider" 
+                       min="0" 
+                       max="100000" 
+                       value="0" 
+                       step="1000"
+                       aria-label="Annual savings amount">
+            </div>
+            
+            <!-- Projection Statistics -->
+            <div class="projection-stats">
+                <div class="stat-card">
+                    <div class="stat-label">Worker Savings Target</div>
+                    <div class="stat-value" id="currentSavings">—</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Investor Savings Target</div>
+                    <div class="stat-value highlight" id="targetSavingsStat">—</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Worker to Investor Savings Gap</div>
+                    <div class="stat-value" id="savingsGap">—</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Your Asset Base</div>
+                    <div class="stat-value" id="projectedWealth">—</div>
+                </div>
+            </div>
+            
+            <!-- Projection Chart -->
+            <div class="chart-wrapper chart-wrapper-large">
+                <canvas id="projectionChart" aria-label="Wealth projection chart"></canvas>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================
+         CROSSOVER ANALYSIS SECTION
+         Financial independence timeline visualization
+         ======================================== -->
+    <section class="section hidden" id="crossover">
+        <div class="section-header">
+            <div class="section-number">Freedom Timeline</div>
+            <h2 class="section-title">Path to Financial Independence</h2>
+            <p class="section-description">
+                Discover when your passive income from investments will exceed your earned income, 
+                making work optional and achieving true financial freedom.
+            </p>
+        </div>
+        
+        <div class="crossover-wrapper">
+            <!-- Crossover Statistics Cards -->
+            <div class="crossover-stats">
+                <!-- Worker Path Card -->
+                <div class="crossover-card worker-path">
+                    <div class="crossover-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                            <path d="M6 21v-2"></path>
+                            <path d="M18 21v-2"></path>
+                        </svg>
+                    </div>
+                    <h3>Worker Path</h3>
+                    <div class="crossover-years" id="workerCrossoverYears">—</div>
+                    <div class="crossover-details">
+                        <p>Annual Savings: <span id="workerCrossoverSavings">—</span></p>
+                    </div>
+                </div>
+                
+                <!-- Investor Path Card -->
+                <div class="crossover-card investor-path">
+                    <div class="crossover-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <line x1="12" y1="2" x2="12" y2="22"></line>
+                            <polyline points="17 5 12 10 7 5"></polyline>
+                            <polyline points="17 14 12 19 7 14"></polyline>
+                        </svg>
+                    </div>
+                    <h3>Investor Path</h3>
+                    <div class="crossover-years" id="investorCrossoverYears">—</div>
+                    <div class="crossover-details">
+                        <p>Annual Savings: <span id="investorCrossoverSavings">—</span></p>
+                    </div>
+                </div>
+                
+                <!-- Time Difference Card -->
+                <div class="crossover-card difference-path">
+                    <div class="crossover-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                    </div>
+                    <h3>Time Saved</h3>
+                    <div class="crossover-years" id="crossoverDifference">—</div>
+                    <div class="crossover-details">
+                        <p>Extra Savings Needed: <span id="extraSavingsNeeded">—</span></p>
+                        <p>Years Gained: <span id="freedomGained">—</span></p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Crossover Visualization Chart -->
+            <div class="chart-wrapper chart-wrapper-large">
+                <canvas id="crossoverChart" aria-label="Financial independence timeline chart"></canvas>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================
+         SUMMARY SECTION
+         Asset endurance and tax analysis
+         ======================================== -->
+    <section class="section hidden" id="summary">
+        <div class="section-header">
+            <div class="section-number">Summary</div>
+            <h2 class="section-title">Asset Endurance Analysis</h2>
+            <p class="section-description">
+                See how long your assets will last under Worker vs Investor spending patterns, 
+                both today and after 15 years of disciplined saving.
+            </p>
+        </div>
+        
+        <!-- Asset Endurance Table -->
+        <div class="endurance-table-wrapper">
+            <table class="endurance-table">
+                <thead>
+                    <tr>
+                        <th>Scenario</th>
+                        <th>Worker Spending</th>
+                        <th>Investor Spending</th>
+                        <th>Difference</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Current Assets Row -->
+                    <tr>
+                        <td class="scenario-label">
+                            <strong>Annual Spending</strong>
+                        </td>
+                        <td class="endurance-value" id="workerAnnualSpending">—</td>
+                        <td class="endurance-value" id="investorAnnualSpending">—</td>
+                        <td class="endurance-diff" id="annualSpendingDiff">—</td>
+                    </tr>
+                    <!-- Current Assets Row -->
+                    <tr>
+                        <td class="scenario-label">
+                            <strong>Current Asset Base</strong>
+                            <span class="scenario-amount" id="currentAssetAmount">—</span>
+                        </td>
+                        <td class="endurance-value" id="workerCurrentEndurance">—</td>
+                        <td class="endurance-value" id="investorCurrentEndurance">—</td>
+                        <td class="endurance-diff" id="currentEnduranceDiff">—</td>
+                    </tr>
+                    <!-- Future Assets Row -->
+                    <tr>
+                        <td class="scenario-label">
+                            <strong>Future Asset Base (15 Years)</strong>
+                            <span class="scenario-amount" id="futureAssetAmount">—</span>
+                        </td>
+                        <td class="endurance-value" id="workerFutureEndurance">—</td>
+                        <td class="endurance-value" id="investorFutureEndurance">—</td>
+                        <td class="endurance-diff" id="futureEnduranceDiff">—</td>
+                    </tr>
+                    <!-- Financial Independence Row -->
+                    <tr class="crossover-row">
+                        <td class="scenario-label">
+                            <strong>Years to Financial Independence</strong>
+                            <span class="scenario-amount">(Passive Income > Earned Income)</span>
+                        </td>
+                        <td class="endurance-value" id="workerCrossoverEndurance">—</td>
+                        <td class="endurance-value" id="investorCrossoverEndurance">—</td>
+                        <td class="endurance-diff" id="crossoverEnduranceDiff">—</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <!-- Key Insights -->
+            <div class="endurance-insights">
+                <h3>Key Insights</h3>
+                <ul id="enduranceInsights">
+                    <!-- Insights populated dynamically -->
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Tax Analysis Section -->
+        <div class="tax-analysis-section" id="taxAnalysisSection">
+            <div class="section-header">
+                <h2 class="section-title">15 Year Tax Analysis</h2>
+                <p class="section-description">
+                    Comparison between taxes incurred over 15 years of salaried income compared to capital gains tax on asset base over 15 years. 
+                </p>
+            </div>
+            
+            <!-- Tax Comparison Table -->
+            <table class="tax-analysis-table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th class="worker-column">
+                            Worker
+                            <div class="caption">"money earned with your time"</div>
+                        </th>
+                        <th class="investor-column">
+                            Investor
+                            <div class="caption">"money produced without your time"</div>
+                        </th>
+                        <th class="difference-column">
+                            Difference
+                            <div class="caption">"Difference between worker and investor values"</div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="row-label">Gross inflows (15 years)</td>
+                        <td class="worker-column" id="workerGrossIncome15">—</td>
+                        <td class="investor-column" id="investorGrossIncome15">—</td>
+                        <td class="difference-column" id="grossIncomeDifference">—</td>
+                    </tr>
+                    <tr>
+                        <td class="row-label">Tax impact</td>
+                        <td class="worker-column" id="workerTaxImpact">—</td>
+                        <td class="investor-column" id="investorTaxImpact">—</td>
+                        <td class="difference-column" id="taxImpactDifference">—</td>
+                    </tr>
+                    <tr>
+                        <td class="row-label">Net inflows (15 years)</td>
+                        <td class="worker-column" id="workerNetIncome15">—</td>
+                        <td class="investor-column" id="investorNetIncome15">—</td>
+                        <td class="difference-column" id="netIncomeDifference">—</td>
+                    </tr>
+                    <tr>
+                        <td class="row-label">Effective tax rate</td>
+                        <td class="worker-column" id="workerTaxRate">—</td>
+                        <td class="investor-column" id="investorTaxRate">—</td>
+                        <td class="difference-column" id="taxRateDifference">—</td>
+                    </tr>
+                    <tr>
+                        <td class="row-label">Years worked for taxes (out of 15)</td>
+                        <td class="worker-column" id="workerYearsForTaxes">—</td>
+                        <td class="investor-column" id="investorYearsForTaxes">—</td>
+                        <td class="difference-column" id="yearsForTaxesDifference">—</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- ========================================
+         CHALLENGE SECTION
+         6-month savings challenge call-to-action
+         ======================================== -->
+    <section class="section challenge-section hidden" id="challenge">
+        <div class="section-header">
+            <div class="section-number">The Challenge</div>
+            <h2 class="section-title">6-Month Investor Challenge</h2>
+        </div>
+        
+        <p class="challenge-description">
+            I challenge you to save <strong>50% of your after-tax income for 6 months</strong>. 
+            If you can commit to this savings target, we're confident you can break free of the worker.
+        </p>
+        
+        <!-- Challenge Target Cards -->
+        <div class="challenge-targets">
+            <div class="challenge-card">
+                <h3>6-Month Target</h3>
+                <div class="challenge-value" id="challengeTotal">—</div>
+            </div>
+            <div class="challenge-card">
+                <h3>Monthly Goal</h3>
+                <div class="challenge-value" id="challengeMonthly">—</div>
+            </div>
+        </div>
+        
+        <!-- Founder Image and Signature -->
+        <div class="challenge-image-container">
+            <img src="media/derek.png" 
+                 alt="Derek Munchow CFP® - Augustus Wealth" 
+                 class="challenge-image">
+            <div class="challenge-name-tag">
+                Derek Munchow CFP® <br> 
+                Founder, Augustus Wealth
+            </div>
+        </div>
+    </section>
+    
+
+    
+
+    <!-- ========================================
+         CONTACT SECTION
+         Lead generation form with Mailchimp integration
+         ======================================== -->
+    <section class="section contact-section hidden" id="contact">
+        <div class="section-header">
+            <div class="section-number">Investor - Level 3</div>
+            <h2 class="section-title">Ready to Talk Level 3?</h2>
+        </div>
+        
+        <div class="contact-intro">
+            <p>
+                I'm here to level you up from worker to investor so you can live life on your terms. 
+            </p>
+        </div>
+        
+        <!-- Mailchimp Signup Form -->
+        <div id="mc_embed_shell">
+            <link href="//cdn-images.mailchimp.com/embedcode/classic-061523.css" rel="stylesheet" type="text/css">
+            <div id="mc_embed_signup">
+                <form action="https://augustuswealth.us18.list-manage.com/subscribe/post?u=a2199808ca87d04cc1d8b79fc&amp;id=107289480d&amp;f_id=00a9abe6f0" 
+                      method="post" 
+                      id="mc-embedded-subscribe-form" 
+                      name="mc-embedded-subscribe-form" 
+                      class="validate" 
+                      target="_blank">
+                    
+                    <div class="indicates-required"><span class="asterisk">*</span> indicates required</div>
+                    
+                    <!-- Email Field -->
+                    <div class="mc-field-group">
+                        <label for="mce-EMAIL">Email Address <span class="asterisk">*</span></label>
+                        <input type="email" name="EMAIL" class="required email" id="mce-EMAIL" required="" value="">
+                    </div>
+                    
+                    <!-- First Name Field -->
+                    <div class="mc-field-group">
+                        <label for="mce-FNAME">First Name <span class="asterisk">*</span></label>
+                        <input type="text" name="FNAME" class="required text" id="mce-FNAME" required="" value="">
+                    </div>
+                    
+                    <!-- Last Name Field -->
+                    <div class="mc-field-group">
+                        <label for="mce-LNAME">Last Name <span class="asterisk">*</span></label>
+                        <input type="text" name="LNAME" class="required text" id="mce-LNAME" value="" required="">
+                    </div>
+                    
+                    <!-- Help Field -->
+                    <div class="mc-field-group">
+                        <label for="mce-HELP">How can we help? </label>
+                        <input type="text" name="HELP" class="text" id="mce-HELP" value="">
+                    </div>
+                    
+                    <!-- Phone Field -->
+                    <div class="mc-field-group">
+                        <label for="mce-PHONE">Phone Number </label>
+                        <input type="text" name="PHONE" class="phone" id="mce-PHONE" value="">
+                    </div>
+                    
+                    <!-- Response Messages -->
+                    <div id="mce-responses" class="clear foot">
+                        <div class="response" id="mce-error-response" style="display: none;"></div>
+                        <div class="response" id="mce-success-response" style="display: none;"></div>
+                    </div>
+                    
+                    <!-- Bot Protection -->
+                    <div aria-hidden="true" style="position: absolute; left: -5000px;">
+                        <input type="text" name="b_a2199808ca87d04cc1d8b79fc_107289480d" tabindex="-1" value="">
+                    </div>
+                    
+                    <!-- Submit Button -->
+                    <div class="optionalParent">
+                        <div class="clear foot">
+                            <input type="submit" name="subscribe" id="mc-embedded-subscribe" class="button" value="Let's Connect">                    
+                            <p style="margin: 0px auto;">
+                                <a href="http://eepurl.com/iLxGTo" title="Mailchimp - email marketing made easy and fun">
+                                    <span style="display: inline-block; background-color: transparent; border-radius: 4px;">
+                                        <img class="refferal_badge" 
+                                             src="https://digitalasset.intuit.com/render/content/dam/intuit/mc-fe/en_us/images/intuit-mc-rewards-text-dark.svg" 
+                                             alt="Intuit Mailchimp" 
+                                             style="width: 220px; height: 40px; display: flex; padding: 2px 0px; justify-content: center; align-items: center;">
+                                    </span>
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- Mailchimp Form Scripts -->
+            <script type="text/javascript" src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"></script>
+            <script type="text/javascript">
+                (function($) {
+                    window.fnames = new Array(); 
+                    window.ftypes = new Array();
+                    fnames[0]='EMAIL';ftypes[0]='email';
+                    fnames[1]='FNAME';ftypes[1]='text';
+                    fnames[2]='LNAME';ftypes[2]='text';
+                    fnames[6]='HELP';ftypes[6]='text';
+                    fnames[4]='PHONE';ftypes[4]='phone';
+                }(jQuery));
+                var $mcj = jQuery.noConflict(true);
+            </script>
+        </div>
+    </section>
+    <section class="section expandable-window hidden" id="expandableInfo">
+        <div class="expandable-container">
+            <!-- Section 1 -->
+            <div class="expandable-section">
+                <div class="expandable-header">
+                    <h3 class="expandable-title">Formulas and Assumptions</h3>
+                    <div class="expandable-chevron">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="expandable-content">
+                    <div class="expandable-inner">
+                        <p>Formulas:<br>
+                            <br>
+                            After tax income = gross annual earned income - federal tax - state tax<br>
+                            Target spending = (50% * after-tax income) + (5% * current asset base)<br>
+                            Target saving = after tax income - target spending<br>
+                            Worker target(savings) = 10% * gross annual income<br>
+                            Worker target(spending) = after tax income - worker target(savings)<br>
+                            <br>
+                            <br>
+                            Assumptions:<br>
+                            <br>
+                            You have a fixed annual salary with standard deductions
+                             for federal tax.<br>
+                            7% annual returns on savings invested in the market.<br>
+                            2025 federal tax brackets are the tax brackets that will
+                             be used to project 15 years in the future.<br>
+                            The capital gains rate is 20%.<br>
+                            If the worker's savings target exceeds the investor's target, then the higher worker target becomes the new investor target.<br>
+                            If the worker's spending target is lower than the investor's target, then the lower worker target becomes the new investor target.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+        
+    <!-- ========================================
+         FOOTER
+         Legal disclaimer and copyright
+         ======================================== -->
+    <footer class="footer">
+        <p class="disclaimer">
+            * Augustus Wealth, LLC is a Registered Investment Adviser. Advisory services are only 
+            offered to clients or prospective clients where Augustus Wealth, LLC and its 
+            representatives are properly licensed or exempt from licensure. This website is solely 
+            for informational purposes. Past performance is no guarantee of future returns. 
+            Investing involves risk and possible loss of principal capital.
+        </p>
+    </footer>
+
+    <!-- ========================================
+         SUCCESS MESSAGE NOTIFICATION
+         Hidden by default, shown after form submission
+         ======================================== -->
+    <div id="successMessage" class="success-message" role="alert" aria-live="polite">
+        Thank you! We'll be in touch soon.
+    </div>
+
+    <!-- ========================================
+         APPLICATION SCRIPTS
+         ======================================== -->
+    <!-- Main Calculator Application -->
+    <script src="calculator.js"></script>
+    
+    <!-- Mailchimp Success Message Customization -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const successDiv = document.querySelector('#mce-success-response');
+            let hasBeenReplaced = false; // Prevent infinite loop
+            
+            if (successDiv) {
+                // Monitor for changes to the success message
+                const observer = new MutationObserver(function(mutations) {
+                    // Skip if already replaced
+                    if (hasBeenReplaced) return;
+                    
+                    mutations.forEach(function(mutation) {
+                        // Check if the success message is displayed with content
+                        if (successDiv.style.display !== 'none' && 
+                            successDiv.textContent.trim() !== '' && 
+                            successDiv.textContent.trim() !== "Thank you! We'll contact you soon to schedule our first meeting.") {
+                            
+                            hasBeenReplaced = true; // Set flag before changing
+                            
+                            // Replace with custom message
+                            successDiv.textContent = "Thank you! We'll contact you soon to schedule our first meeting.";
+                            
+                            // Stop observing after successful replacement
+                            observer.disconnect();
+                        }
+                    });
+                });
+                
+                // Start observing for changes
+                observer.observe(successDiv, {
+                    attributes: true,
+                    childList: true,
+                    characterData: true,
+                    subtree: true,
+                    attributeFilter: ['style']
+                });
+            }
+        });
+    </script>
+</body>
+</html>
